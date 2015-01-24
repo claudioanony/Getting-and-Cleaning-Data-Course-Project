@@ -1,15 +1,16 @@
 
 Getting and Cleaning Data Course Project
 =========
-This is a guide to the steps to arrive to a tidy dataset from a series of data originally published in:
+This is a guide to the steps to a tidy dataset from a series of data originally published in:
 
 Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. _Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine_. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012 
 
 It includes the following files:
-=========================================
-"tidydata.txt": the final tidy dataset
-"run_analysis.R": the script that prepares the final dataset
-"CodeBook.md": the list of variables included in the final tidy dataset  
+----
+* "tidydata.txt": the final tidy dataset  
+* "run_analysis.R": the script that prepares the final dataset
+* "CodeBook.md": the list of variables included in the final tidy dataset 
+* "myfeatures.txt": the text file with the new variable names
 
 1. The script should be in the same directory of the original dataset, together with the file "myfeature.txt" that contains the new variable names.
 
