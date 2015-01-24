@@ -9,10 +9,10 @@ It includes the following files:
 ----
 * "tidydata.txt": the final tidy dataset  
 * "run_analysis.R": the script that prepares the final dataset
-* "CodeBook.md": the list of variables included in the final tidy dataset 
+* "CodeBook.md": the list of variables included in the final tidy dataset
 * "myfeatures.txt": the text file with the new variable names
 
-1. The script should be in the same directory of the original dataset, together with the file "myfeature.txt" that contains the new variable names.
+1. The script should be in the same directory as the original dataset, together with the file "myfeature.txt" that contains the new variable names.
 
 2. Load the libraries dplyr and reshape2
 
@@ -28,17 +28,11 @@ It includes the following files:
 
 8. The columns that refer to subjects and their activities, now  with their descriptive names, have been added again. 
 
-9. The column names, that is the list of variables, is written to an external text file so to be easily corrected with a text editor. The editing made explicit the measurements (e.g. the original variable "tBodyAcc-std()-Z" was changed in "tBodyAccelerationStdZ") but no other changes was done, also in case the variable name likely containes mistake as in "fBodyBodyAccJerkMag-std()" that was changed in "fBodyBodyAccelerationJerkMagStd".
+9. The column names, that is the list of variables, is written to an external text file so to be easily corrected with a text editor. The editing made explicit the measurements (e.g. the original variable "tBodyAcc-std()-Z" was changed in "tBodyAccelerationStdZ") but no other changes was done, also in case the variable name likely containes mistake as in "fBodyBodyAccJerkMag-std()" that was prudently changed in "fBodyBodyAccelerationJerkMagStd".
 
 10. The data have been reshaped so to have variables mean per activities per subject
 
 11. Lastly the output has been written to the file "tidydata.txt".
 
-# Reshape the data so to have variables mean per activities per subject
-# resmelted <- melt(res2, id=c("subject", "activity"))
-# rescast <- dcast(resmelted, subject + activity ~ variable, mean)
-
-# write.table(rescast, "tidydata.txt", sep="\t", row.name=FALSE)
-# summarise_each(group_by(res2, subject, activity), funs(mean))
 
 
