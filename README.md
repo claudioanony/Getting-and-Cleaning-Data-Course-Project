@@ -1,7 +1,7 @@
 
 Getting and Cleaning Data Course Project
 =========
-This is a guide to the steps to a tidy dataset from a series of data originally published in:
+The dataset presented here, in the enclosed file "tidydata.txt", is the result of a series of selection, reshaping and arithmetic calculation so to produce a tidy set from a series of data originally published in:
 
 Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. _Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine_. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012 
 
