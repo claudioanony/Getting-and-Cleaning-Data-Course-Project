@@ -1,4 +1,4 @@
-# Check if the working directory contains the original dataset files
+# Check if the working directory is UCA_HAR_Dataset
 
 # Load the necessary libraries
 library(dplyr)
@@ -6,19 +6,18 @@ library(dplyr)
 library(reshape2)
 
 
-# Merge the training and the test sets to create one data set
+# Read in the training and the test sets to create one data set
 X_train <- read.table("./train/X_train.txt")
 X_test <- read.table("./test/X_test.txt")
 subject_test <- read.table("./test/subject_test.txt")
 subject_train <- read.table("./train/subject_train.txt")
 activity_test <- read.table("./test/y_test.txt")
 activity_train <- read.table("./train/y_train.txt")
-
+# We build up a single data set
 X_test2 <- cbind(X_test, subject_test, activity_test)
 X_train2 <- cbind(X_train, subject_train, activity_train)
 X_complete <- rbind(X_train2, X_test2)
-
-# Features are the variable names. 
+# Features are the variable names
 features <- read.table("features.txt") 
 # We add two rows to make space for subjects and activities
 features2 <- rbind(features, 
@@ -27,12 +26,11 @@ features2 <- rbind(features,
 variables  <- t(features2$V2)
 # and added to the main data set
 names(X_complete) <- variables
-# Now we have all data in a single data frame: X_complete
-# As second step we select only non duplicated column
+# Select only non duplicated column
 X_complete2 <- X_complete[,!duplicated(colnames(X_complete))]
-# Collect in a vector the names which refer directly to means and stds
+# Collect in a vector the names which contains  means or stds
 w <- grep("mean[^Fr]|std", colnames(X_complete2), ignore.case=TRUE)
-# Create a data frame with mean and std variables
+# Create a data frame with only mean and std variables
 res <- X_complete2[,w]
 # Add a column with subjects
 res <- cbind(res, X_complete2$subject)
@@ -46,14 +44,14 @@ a <- gsub("6","LAYING", a)
 # Add the column with activities
 res2 <- cbind(res, a)
 # The txt file with variable names has been corrected 
-# with a text editor
+# with an external text editor
 myfeatures <- read.table("myfeatures.txt")
-colnames(res2) <- myfeatures
+colnames(res2) <- myfeatures$x
 # Reshape the data so to have variables mean per activities per subject
 resmelted <- melt(res2, id=c("subject", "activity"))
 rescast <- dcast(resmelted, subject + activity ~ variable, mean)
 
 write.table(rescast, "tidydata.txt", sep="\t", row.name=FALSE)
-# in case we would like to use tidyr instead of reshape2
+# In case you prefer and use tidyr instead of reshape2
 # summarise_each(group_by(res2, subject, activity), funs(mean))
 
