@@ -1,4 +1,4 @@
-# Check if the working directory is UCA_HAR_Dataset
+# Check if the working directory contains the original dataset files
 
 # Load the necessary libraries
 library(dplyr)
@@ -13,12 +13,12 @@ subject_test <- read.table("./test/subject_test.txt")
 subject_train <- read.table("./train/subject_train.txt")
 activity_test <- read.table("./test/y_test.txt")
 activity_train <- read.table("./train/y_train.txt")
-# We build up a single data set
+
 X_test2 <- cbind(X_test, subject_test, activity_test)
 X_train2 <- cbind(X_train, subject_train, activity_train)
 X_complete <- rbind(X_train2, X_test2)
-# Features are the variable names. For the time being the data 
-# are a data frame. 
+
+# Features are the variable names. 
 features <- read.table("features.txt") 
 # We add two rows to make space for subjects and activities
 features2 <- rbind(features, 
@@ -27,7 +27,8 @@ features2 <- rbind(features,
 variables  <- t(features2$V2)
 # and added to the main data set
 names(X_complete) <- variables
-# Select only non duplicated column
+# Now we have all data in a single data frame: X_complete
+# As second step we select only non duplicated column
 X_complete2 <- X_complete[,!duplicated(colnames(X_complete))]
 # Collect in a vector the names which refer directly to means and stds
 w <- grep("mean[^Fr]|std", colnames(X_complete2), ignore.case=TRUE)
@@ -35,7 +36,7 @@ w <- grep("mean[^Fr]|std", colnames(X_complete2), ignore.case=TRUE)
 res <- X_complete2[,w]
 # Add a column with subjects
 res <- cbind(res, X_complete2$subject)
-# Sustitute activities to integer reference
+# Sustitute explicit description of activities to integer reference
 a <- gsub("1","WALKING", X_complete2$activity)
 a <- gsub("2","WALKING_UPSTAIRS", a)
 a <- gsub("3","WALKING_DOWNSTAIRS", a)
@@ -53,5 +54,6 @@ resmelted <- melt(res2, id=c("subject", "activity"))
 rescast <- dcast(resmelted, subject + activity ~ variable, mean)
 
 write.table(rescast, "tidydata.txt", sep="\t", row.name=FALSE)
+# in case we would like to use tidyr instead of reshape2
 # summarise_each(group_by(res2, subject, activity), funs(mean))
 
