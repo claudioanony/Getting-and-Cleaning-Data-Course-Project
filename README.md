@@ -10,7 +10,7 @@ Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ort
 
 * "tidydata.txt": the final tidy dataset  
 * "run_analysis.R": the script that prepares the final dataset  
-* "CodeBook.md": the list of variables included in the final tidy dataset  
+* "CodeBook.md": the list of variables included in the final tidy dataset
 * "myfeatures.txt": the text file with the new variable names
 
 1. The script run_analysis.R should be in the same directory as the original dataset, together with the file "myfeature.txt" that contains the new variable names.
